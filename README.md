@@ -8,5 +8,5 @@ This project is made so all the elements are displayed correctly on popular scre
 **Link to the project video**
 https://drive.google.com/file/d/1tnsYZie9jawqSTyJRLyGyTmlz4IaOrQW/view?usp=sharing
 
-**Link to Github pages**
+**Link to Github pages** 
 https://demetyldrm.github.io/se_project_aroundtheus/
