@@ -33,9 +33,11 @@
   background: transparent url(../images/add-icon.svg) center no-repeat;
   height: 50px;
   width: 150px;
+  /* width: 100%; */
   margin-left: auto;
   border: 2px solid #fff;
   border-radius: 2px;
+  padding: 0;
 }
 
 .profile__add-button:hover {
@@ -76,6 +78,10 @@
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
+}
+
+#profile-description-input {
+  margin: 0;
 }
 
 @media screen and (max-width: 680px) {
