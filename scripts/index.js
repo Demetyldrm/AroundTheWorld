@@ -91,17 +91,15 @@ function getCardElement(cardData) {
     previewImageTextEl.textContent = cardData.name;
   });
 
-  // From tutor: not sure where the additional eventListener that you're referring to
-  // is in your review comment. Please update
-  modalImageCloseButton.addEventListener("click", () => {
-    closePopup(previewImageModal);
-  });
-
   cardImageEl.src = cardData.link;
   cardSubtitleEl.textContent = cardData.name;
   cardImageEl.alt = cardData.name;
   return cardElement;
 }
+
+modalImageCloseButton.addEventListener("click", () => {
+  closePopup(previewImageModal);
+});
 
 /* ---------------------Event handlers -----------------------------------*/
 
