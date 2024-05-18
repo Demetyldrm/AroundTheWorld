@@ -52,7 +52,8 @@
         <button class="modal__close" type="button"></button>
         <p class="modal__heading">Edit Profile</p>
         <form class="modal__form" id="edit-profile-form" >
-          <input
+          <label class="modal__error_wrapper">
+            <input
             type="text"
             name="title"
             placeholder="name"
@@ -61,10 +62,11 @@
             minlength="2"
             maxlength="40"
             required
-          />
-          <span class="modal__error" id="profile-title-input-error"></span>
-
-          <input
+            />
+            <span class="modal__error" id="profile-title-input-error"></span>
+          </label>
+          <label class="modal__error_wrapper">
+            <input
             type="text"
             name="description"
             placeholder="description"
@@ -73,8 +75,9 @@
             minlength="2"
             maxlength="200"
             required
-          />
-          <span class="modal__error" id="profile-description-input-error"></span>
+            />
+            <span class="modal__error" id="profile-description-input-error"></span>
+          </label>
           <button class="modal__button modal__button_disabled" id="edit-submit-button"disabled>Save</button>
         </form>
       </div>
@@ -87,7 +90,8 @@
         <button class="modal__close" id="modal-close-button" type="button"></button>
         <p class="modal__heading">New Place</p>
         <form class="modal__form" id="add-card-form" >
-          <input
+          <label class="modal__error_wrapper">
+            <input
             type="text"
             name="title"
             placeholder="Title"
@@ -96,17 +100,20 @@
             minlength="1"
             maxlength="30"
             required
-          />
-          <span class="modal__error" id="add-title-input-error"></span>
-          <input
+            />
+            <span class="modal__error" id="add-title-input-error"></span>
+          </label>
+          <label class="modal__error_wrapper">
+            <input
             type="url"
             name="url"
             placeholder="Image URL"
             class="modal__input modal__input_type_url"
             id="add-url-input"
             required
-          />
-          <span class="modal__error" id="add-url-input-error"></span>
+            />
+            <span class="modal__error" id="add-url-input-error"></span>
+          </label>
           <button class="modal__button modal__button_disabled" type="submit" disabled>Save</button>
         </form>
       </div>
