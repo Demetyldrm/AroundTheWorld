@@ -56,14 +56,6 @@ const modalImageCloseButton = previewImageModal.querySelector(
 );
 /* ---------------------Functions ------------------------------------ */
 
-function openModal(modal) {
-  modal.classList.add("modal_opened");
-}
-
-function closePopup(modal) {
-  modal.classList.remove("modal_opened");
-}
-
 function renderCard(cardData, cardListEl) {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
@@ -119,6 +111,7 @@ function handleAddCardFormSubmit(e) {
   e.target.reset();
 }
 
+// Dear reviewer: I changed it to querySelector but Esc button stopped working.
 function closeModalByEsc(evt) {
   if (evt.key === "Escape") {
     const openModal = document.querySelectorAll(".modal_opened");
