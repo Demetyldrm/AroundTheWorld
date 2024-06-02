@@ -1,3 +1,6 @@
+import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
+
 const initialCards = [
   {
     name: "Yosemite Valley",
@@ -24,6 +27,7 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lago.jpg",
   },
 ];
+
 /* -------------------------------------------------- Elements ----------------------------------------*/
 
 const profileEditButton = document.querySelector("#profile-edit-button");
@@ -54,6 +58,26 @@ const previewImageTextEl = previewImageModal.querySelector(".modal__caption");
 const modalImageCloseButton = previewImageModal.querySelector(
   "#modal-close-button"
 );
+
+/*----------------------Validation------------------------------------ */
+
+const settings = {
+  inputSelector: ".modal__input",
+  submitButtonSelector: ".modal__button",
+  inactiveButtonClass: ".modal__button_disabled",
+  inputErrorClass: "modal__input_type_error",
+  errorClass: "modal__error_visible",
+  formSelector: ".modal__form",
+};
+
+const editFormElement = profileEditModal.querySelector(".modal__form");
+const addFormElement = addCardModal.querySelector("#add-card-form");
+
+const editFormValidator = new FormValidator(settings, editFormElement);
+const addFormValidator = new FormValidator(settings, addFormElement);
+editFormValidator.enableValidation();
+addFormValidator.enableValidation();
+
 /* ---------------------Functions ------------------------------------ */
 
 function renderCard(cardData, cardListEl) {
@@ -64,7 +88,7 @@ function renderCard(cardData, cardListEl) {
 function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEl = cardElement.querySelector("#card-image");
-  const cardSubtitleEl = cardElement.querySelector(".card__subtitle");
+  const cardSubtitleEl = cardElement.querySelector("#card-subtitle");
   const likeButton = cardElement.querySelector("#card-like-button");
   const deleteButton = cardElement.querySelector("#card-delete-button");
 
@@ -111,11 +135,10 @@ function handleAddCardFormSubmit(e) {
   e.target.reset();
 }
 
-// Dear reviewer: I changed it to querySelector but Esc button stopped working.
 function closeModalByEsc(evt) {
   if (evt.key === "Escape") {
-    const openModal = document.querySelectorAll(".modal_opened");
-    closePopup(openModal[0]);
+    const openModal = document.querySelector(".modal_opened");
+    closePopup(openModal);
   }
 }
 
@@ -136,6 +159,7 @@ function closePopup(modal) {
   document.removeEventListener("keydown", closeModalByEsc);
   modal.removeEventListener("mousedown", closeModalByClick);
 }
+
 /* --------------------- Event Listeners ----------------------------------*/
 
 profileEditButton.addEventListener("click", () => {
