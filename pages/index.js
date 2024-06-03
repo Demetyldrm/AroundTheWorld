@@ -64,7 +64,7 @@ const modalImageCloseButton = previewImageModal.querySelector(
 const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
-  inactiveButtonClass: ".modal__button_disabled",
+  inactiveButtonClass: "modal__button_disabled",
   inputErrorClass: "modal__input_type_error",
   errorClass: "modal__error_visible",
   formSelector: ".modal__form",

@@ -21,7 +21,6 @@ export default class FormValidator {
     const errorMessageEl = this._formEl.querySelector(`#${inputEl.id}-error`);
     inputEl.classList.remove(this._inputErrorClass);
     errorMessageEl.textContent = "";
-    // errorMessageEl.classList.remove(this._errorClass);
   }
 
   _toggleButtonState() {
