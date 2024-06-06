@@ -79,12 +79,6 @@ const addFormValidator = new FormValidator(settings, addFormElement);
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 
-/* ---------------------Functions ------------------------------------ */
-// function renderCard(cardData, method = "prepend") {
-//   const card = new Card(cardData, cardSelector, handleImageClick).getView();
-//   // const cardElement = getCardElement(item);
-//   cardsListEl[method](card);
-// }
 function addCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
   return card.getView();
@@ -101,34 +95,6 @@ function handleImageClick(cardData) {
   previewImageTextEl.textContent = cardData.name;
   openModal(previewImageModal);
 }
-
-// function getCardElement(cardData) {
-//   const cardElement = cardTemplate.cloneNode(true);
-//   const cardImageEl = cardElement.querySelector("#card-image");
-//   const cardSubtitleEl = cardElement.querySelector("#card-subtitle");
-//   const likeButton = cardElement.querySelector("#card-like-button");
-//   const deleteButton = cardElement.querySelector("#card-delete-button");
-
-//   likeButton.addEventListener("click", () => {
-//     likeButton.classList.toggle("card__like-button_active");
-//   });
-
-//   deleteButton.addEventListener("click", () => {
-//     cardElement.remove();
-//   });
-
-//   cardImageEl.addEventListener("click", () => {
-//     openModal(previewImageModal);
-//     previewImageEl.src = cardData.link;
-//     previewImageEl.alt = cardData.name;
-//     previewImageTextEl.textContent = cardData.name;
-//   });
-
-//   cardImageEl.src = cardData.link;
-//   cardSubtitleEl.textContent = cardData.name;
-//   cardImageEl.alt = cardData.name;
-//   return cardElement;
-// }
 
 modalImageCloseButton.addEventListener("click", () => {
   closePopup(previewImageModal);
@@ -149,7 +115,7 @@ function handleAddCardFormSubmit(e) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
   e.target.reset();
-  addFormValidator.resetValidation();
+  addFormValidator._disableButton();
   e.target.reset();
 }
 
@@ -184,7 +150,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  editFormValidator.resetValidation();
+  editFormValidator._disableButton();
 });
 
 profileEditCloseButton.addEventListener("click", () =>
