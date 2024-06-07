@@ -114,6 +114,7 @@ function handleAddCardFormSubmit(e) {
   const name = cardTitleInput.value;
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardListEl);
+  closePopup(addCardModal);
   e.target.reset();
   addFormValidator._disableButton();
   e.target.reset();
