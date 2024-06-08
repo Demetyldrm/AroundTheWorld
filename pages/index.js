@@ -60,8 +60,6 @@ const modalImageCloseButton = previewImageModal.querySelector(
   "#modal-close-button"
 );
 
-/*----------------------Validation------------------------------------ */
-
 const settings = {
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
