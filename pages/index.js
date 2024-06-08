@@ -147,7 +147,7 @@ profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
   openModal(profileEditModal);
-  editFormValidator._disableButton();
+  editFormValidator.disableButton();
 });
 
 profileEditCloseButton.addEventListener("click", () =>
