@@ -6,14 +6,12 @@
     <meta name="author" content="Demet Yildirim" />
     <meta name="keywords" content="HTML,CSS" />
     <title>Around the U.S.</title>
-    <link rel="shortcut icon" href="favicon.ico" />
-    <link rel="stylesheet" href="./pages/index.css" />
   </head>
   <body class="page">
     <div class="page__content">
       <header class="header page__section">
         <img
-          src="./images/around.svg"
+          src="<%=require('./images/around.svg')%>"
           alt="Around the U.S. logo"
           class="header__logo"
         />
@@ -22,7 +20,7 @@
         <section class="profile page__section">
           <img
             class="profile__image"
-            src="./images/jacques-cousteau.jpg"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
             alt="A picture of Jacques Cousteau"
           />
           <div class="profile__info">
@@ -133,7 +131,6 @@
       </div>
     </div>
   </div>
-
     <template id="card-template">
       <li class="card">
         <img class="card__image" src="" alt="An image of a new place" id="card-image"/>
@@ -144,6 +141,5 @@
         </div>
       </li>
     </template>
-    <script src="./pages/index.js" type="module" defer></script>
   </body>
 </html>
