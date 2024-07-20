@@ -37,7 +37,7 @@ const renderCard = (cardData) => {
 //Section.js
 const section = new Section(
   { items: initialCards, renderer: renderCard },
-  "cards__list"
+  ".cards__list"
 );
 
 section.renderItems();
