@@ -66,7 +66,8 @@ const userInfo = new UserInfo(profileNameElement, profileJobElement);
 /* --------------------- Functions -----------------------------------*/
 
 function handleProfileEditSubmit(userData) {
-  userInfo.setUserInfo(userData);
+  profileNameElement.textContent = userData.title;
+  profileJobElement.textContent = userData.description;
   editProfilePopup.close();
 }
 
@@ -94,7 +95,6 @@ profileEditButton.addEventListener("click", () => {
 // Add new card form
 addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
-  addFormValidator._toggleButtonState();
 });
 
 const profileEditFormValidator = new FormValidator(settings, profileEditForm);
