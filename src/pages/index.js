@@ -18,12 +18,12 @@ const profileDescriptionInput = document.querySelector(
 const profileNameElement = document.querySelector(".profile__title");
 const profileJobElement = document.querySelector(".profile__description");
 const profileEditModal = document.querySelector("#profile-edit-modal");
+const profileEditForm = profileEditModal.querySelector(".modal__form");
 const addCardModal = document.querySelector("#add-card-modal");
-const addCardFormElement = document.querySelector("#add-card-form");
+const addCardFormElement = addCardModal.querySelector(".modal__form");
 const cardListEl = document.querySelector(".cards__list");
 
 //Creating card instances
-//Cards
 
 function createCard(cardData) {
   const card = new Card(cardData, "#card-template", handleImageClick);
@@ -42,6 +42,10 @@ const section = new Section(
 
 section.renderItems();
 
+//PopupWithImage.js
+const newImagePopup = new PopupWithImage("#image-modal");
+newImagePopup.setEventListeners();
+
 //PopupWIthForm.js
 const editProfilePopup = new PopupWithForm({
   popupSelector: "#profile-edit-modal",
@@ -49,15 +53,12 @@ const editProfilePopup = new PopupWithForm({
 });
 editProfilePopup.setEventListeners();
 
+//add new card
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: handleAddCardFormSubmit,
 });
 newCardPopup.setEventListeners();
-
-//PopupWithImage.js
-const newImagePopup = new PopupWithImage("#image-modal");
-newImagePopup.setEventListeners();
 
 //UserInfo
 const userInfo = new UserInfo(profileNameElement, profileJobElement);
@@ -96,7 +97,7 @@ addNewCardButton.addEventListener("click", () => {
   addFormValidator._toggleButtonState();
 });
 
-const profileEditFormValidator = new FormValidator(settings, profileEditModal);
+const profileEditFormValidator = new FormValidator(settings, profileEditForm);
 profileEditFormValidator.enableValidation();
 const addFormValidator = new FormValidator(settings, addCardModal);
 addFormValidator.enableValidation();

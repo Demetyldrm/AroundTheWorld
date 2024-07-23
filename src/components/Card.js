@@ -44,7 +44,7 @@ export default class Card {
       .cloneNode(true);
     this._cardImageElement = this._cardElement.querySelector(".card__image");
     this._cardImageElement.src = this._link;
-    this._cardImageElement.alt = this._link;
+    this._cardImageElement.alt = this._name;
     this._cardTitle = this._cardElement.querySelector(".card__subtitle");
     this._cardTitle.textContent = this._name;
     this._setEventListeners();
