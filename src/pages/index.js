@@ -62,7 +62,7 @@ newCardPopup.setEventListeners();
 
 //UserInfo
 const userInfo = new UserInfo(profileNameElement, profileJobElement);
-
+const currentUserInfo = userInfo.getUserInfo();
 /* --------------------- Functions -----------------------------------*/
 
 function handleProfileEditSubmit(userData) {
@@ -87,8 +87,8 @@ function handleImageClick(cardData) {
 /* --------------------- Event Listeners ----------------------------------*/
 // Edit Profile form
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = profileNameElement.textContent;
-  profileDescriptionInput.value = profileJobElement.textContent.trim();
+  profileTitleInput.value = currentUserInfo.name;
+  profileDescriptionInput.value = currentUserInfo.description;
   editProfilePopup.open();
 });
 
