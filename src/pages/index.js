@@ -62,15 +62,15 @@ newCardPopup.setEventListeners();
 
 //UserInfo
 const userInfo = new UserInfo(profileNameElement, profileJobElement);
-const currentUserInfo = userInfo.getUserInfo();
+
 /* --------------------- Functions -----------------------------------*/
 
 function handleProfileEditSubmit(userData) {
   profileNameElement.textContent = userData.title;
   profileJobElement.textContent = userData.description;
 
-  currentUserInfo.name = userData.title;
-  currentUserInfo.description = userData.description;
+  userInfo.getUserInfo().name = userData.title;
+  userInfo.getUserInfo().description = userData.description;
   editProfilePopup.close();
   profileEditForm.reset();
 }
@@ -91,8 +91,8 @@ function handleImageClick(cardData) {
 /* --------------------- Event Listeners ----------------------------------*/
 // Edit Profile form
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = currentUserInfo.name;
-  profileDescriptionInput.value = currentUserInfo.description;
+  profileTitleInput.value = userInfo.getUserInfo().name;
+  profileDescriptionInput.value = userInfo.getUserInfo().description;
   editProfilePopup.open();
 });
 
