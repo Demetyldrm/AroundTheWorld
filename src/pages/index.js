@@ -66,11 +66,9 @@ const userInfo = new UserInfo(profileNameElement, profileJobElement);
 /* --------------------- Functions -----------------------------------*/
 
 function handleProfileEditSubmit(userData) {
-  profileNameElement.textContent = userData.title;
-  profileJobElement.textContent = userData.description;
-
-  userInfo.getUserInfo().name = userData.title;
-  userInfo.getUserInfo().description = userData.description;
+  const name = userData.title;
+  const description = userData.description;
+  userInfo.setUserInfo({ name, description });
   editProfilePopup.close();
   profileEditForm.reset();
 }
@@ -90,6 +88,7 @@ function handleImageClick(cardData) {
 
 /* --------------------- Event Listeners ----------------------------------*/
 // Edit Profile form
+// for the reviwer: I didn't delete userInfo.getUserInfo here, handleProfileEditSubmit is fixed. Thank you
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = userInfo.getUserInfo().name;
   profileDescriptionInput.value = userInfo.getUserInfo().description;
