@@ -68,7 +68,11 @@ const currentUserInfo = userInfo.getUserInfo();
 function handleProfileEditSubmit(userData) {
   profileNameElement.textContent = userData.title;
   profileJobElement.textContent = userData.description;
+
+  currentUserInfo.name = userData.title;
+  currentUserInfo.description = userData.description;
   editProfilePopup.close();
+  profileEditForm.reset();
 }
 
 function handleAddCardFormSubmit(userInfo) {
