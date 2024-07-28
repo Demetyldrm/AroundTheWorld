@@ -88,10 +88,10 @@ function handleImageClick(cardData) {
 
 /* --------------------- Event Listeners ----------------------------------*/
 // Edit Profile form
-// for the reviwer: I didn't delete userInfo.getUserInfo here, handleProfileEditSubmit is fixed. Thank you
 profileEditButton.addEventListener("click", () => {
-  profileTitleInput.value = userInfo.getUserInfo().name;
-  profileDescriptionInput.value = userInfo.getUserInfo().description;
+  const { description, name } = userInfo.getUserInfo();
+  profileTitleInput.value = name;
+  profileDescriptionInput.value = description;
   editProfilePopup.open();
 });
 
