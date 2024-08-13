@@ -41,23 +41,26 @@ export default class Api {
       .catch((err) => console.error(err));
   }
 
-  async editProfile({ name, description }) {
+  async editProfile({ name, about }) {
     return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
       method: "PATCH",
       headers: {
         Authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        body: JSON.stringify({ name, description }),
+        "Content-Type": "application/json",
       },
+      body: JSON.stringify({ name, about }),
     })
       .then((res) => {
-        if (res.ok) {
-          return res.json();
+        if (!res.ok) {
+          return res.json().then((error) => {
+            console.error("Error details from server:", error);
+            return Promise.reject(`Error: ${res.status}`);
+          });
         }
-
-        return Promise.reject(`Error: ${res.status}`);
+        return res.json();
       })
       .catch((err) => {
-        console.error("Error:", err);
+        console.error("Error during profile update:", err);
       });
   }
 
@@ -66,6 +69,7 @@ export default class Api {
       method: "POST",
       headers: {
         authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: title,

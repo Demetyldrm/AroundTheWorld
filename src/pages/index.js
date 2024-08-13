@@ -38,20 +38,19 @@ const api = new Api({
 /* -------------------------------------------------- User Info ---------------------------------------- */
 const userInfo = new UserInfo({
   name: ".profile__title",
-  description: ".profile__description",
+  about: ".profile__description",
   avatarElement: ".profile__image",
 });
 
-// Load user info from API
 api
   .getUserInfo()
-  .then((userData) => {
-    if (userData) {
+  .then((profileData) => {
+    if (profileData) {
       userInfo.setUserInfo({
-        name: userData.name,
-        description: userData.about,
+        name: profileData.name,
+        about: profileData.about,
       });
-      userInfo.changeAvatar(userData.avatar);
+      userInfo.changeAvatar(profileData.avatar);
     }
   })
   .catch((err) => console.log("Error loading user info:", err));
@@ -59,6 +58,8 @@ api
 /* -------------------------------------------------- Cards ------------------------------------------- */
 
 const createCard = (cardData) => {
+  console.log("Card Data:", cardData); // Log the entire cardData
+
   const card = new Card(
     cardData,
     "#card-template",
@@ -66,12 +67,14 @@ const createCard = (cardData) => {
       handleImageClick.open(cardData);
     },
     () => {
+      console.log("Card ID:", cardData._id || cardData.id); // Log to check if id is valid
       handleDeleteModal(cardData, card);
     },
     (cardId, isLiked, cardElement) => {
       handleLikeClick(cardId, isLiked, cardElement);
     }
   );
+
   return card.getView();
 };
 
@@ -137,18 +140,28 @@ avatarEditPopup.setEventListeners();
 /* -------------------------------------------------- Event Handlers ---------------------------------------- */
 
 function handleProfileEditSubmit(profileData) {
+  console.log("Profile Data Submitted:", profileData); // Log the profile data
+
+  const processedProfileData = {
+    title: profileData.title || " Name",
+    description: profileData.description || " About",
+  };
+
   profileSubmitButton.textContent = "Saving...";
   api
-    .editProfile(profileData)
+    .editProfile({
+      name: processedProfileData.title,
+      about: processedProfileData.description,
+    })
     .then(() => {
-      const name = profileData.title;
-      const description = profileData.description;
-      userInfo.setUserInfo({ name, description });
-
+      userInfo.setUserInfo({
+        name: processedProfileData.title,
+        about: processedProfileData.description,
+      });
       editProfilePopup.close();
     })
     .catch((err) => {
-      return console.error(err);
+      console.error("Error updating profile:", err);
     })
     .finally(() => {
       profileSubmitButton.textContent = "Saved";
@@ -162,6 +175,7 @@ function handleAddCardFormSubmit(newCardData) {
 
   console.log(name, alt, link, newCardData);
   addCardSubmitButton.textContent = "Saving...";
+
   api
     .addNewCard(name, link)
     .then((cardData) => {
@@ -180,25 +194,29 @@ function handleAddCardFormSubmit(newCardData) {
     .finally(() => {
       addCardSubmitButton.textContent = "Saved";
     });
-
-  renderCard({ name, link, alt });
-  newCardPopup.close();
 }
-
 function handleImageClick(cardData) {
   newImagePopup.open(cardData);
 }
 
 function handleDeleteModal(cardData, card) {
+  const cardId = cardData._id || cardData.id;
+
+  if (!cardId) {
+    console.error("Card ID is undefined or invalid!");
+    return;
+  }
+
   deleteCardPopup.setFormSubmitHandler(() => {
     api
-      .deleteCard(cardData.id)
+      .deleteCard(cardId)
       .then(() => {
         card._deleteCard();
         deleteCardPopup.close();
       })
       .catch(console.error);
   });
+
   deleteCardPopup.open();
 }
 
