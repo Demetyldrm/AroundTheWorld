@@ -58,8 +58,7 @@ api
 /* -------------------------------------------------- Cards ------------------------------------------- */
 
 const createCard = (cardData) => {
-  console.log("Card Data:", cardData); // Log the entire cardData
-
+  console.log("Card Data:", cardData);
   const card = new Card(
     cardData,
     "#card-template",
@@ -67,7 +66,7 @@ const createCard = (cardData) => {
       handleImageClick.open(cardData);
     },
     () => {
-      console.log("Card ID:", cardData._id || cardData.id); // Log to check if id is valid
+      console.log("Card ID:", cardData._id || cardData.id);
       handleDeleteModal(cardData, card);
     },
     (cardId, isLiked, cardElement) => {
@@ -140,7 +139,7 @@ avatarEditPopup.setEventListeners();
 /* -------------------------------------------------- Event Handlers ---------------------------------------- */
 
 function handleProfileEditSubmit(profileData) {
-  console.log("Profile Data Submitted:", profileData); // Log the profile data
+  console.log("Profile Data Submitted:", profileData);
 
   const processedProfileData = {
     title: profileData.title || " Name",
