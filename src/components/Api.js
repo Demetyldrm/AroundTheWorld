@@ -41,42 +41,28 @@ export default class Api {
       .catch((err) => console.error(err));
   }
 
-  async editProfile() {
-    const url = "https://around-api.en.tripleten-services.com/v1/users/me";
-
-    const modifiedProfile = {
-      name: "New Name",
-      about: "Profile Info",
-    };
-
-    const headers = {
-      Authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-      "Content-Type": "application/json",
-    };
-
-    return fetch(url, {
+  async editProfile({ name, description }) {
+    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
       method: "PATCH",
-      headers: headers,
-      body: JSON.stringify(modifiedProfile),
+      headers: {
+        Authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
+        body: JSON.stringify({ name, description }),
+      },
     })
       .then((res) => {
-        if (!res.ok) {
-          return Promise.reject(`HTTP error! Status: ${res.status}`);
+        if (res.ok) {
+          return res.json();
         }
-        return res.json();
+
+        return Promise.reject(`Error: ${res.status}`);
       })
-      .then((data) => {
-        console.log("Success:", data);
-        return data;
-      })
-      .catch((error) => {
-        console.log("Error", error);
-        throw error;
+      .catch((err) => {
+        console.error("Error:", err);
       });
   }
 
   async addNewCard(title, link) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
       method: "POST",
       headers: {
         authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
@@ -125,16 +111,10 @@ export default class Api {
       }
     )
       .then((res) => {
-        if (res.ok) {
-          console.log("Card liked: " + res.status);
-          return res.json();
-        }
-
-        console.log("Unable to Like");
-        return Promise.reject(`Like Error:  + ${res.status}`);
+        return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       })
       .catch((err) => {
-        console.log(err);
+        console.error(err);
       });
   }
 
@@ -162,25 +142,29 @@ export default class Api {
   }
 
   async updateAvatar(avatarUrl) {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: {
-          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        },
-        body: JSON.stringify({
-          avatar: avatarUrl,
-        }),
-      }
-    )
-      .then((res) => {
-        if (res.ok) {
-          console.log(res.ok);
-          return res.json();
+    try {
+      const res = await fetch(
+        "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
+        {
+          method: "PATCH",
+          headers: {
+            authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            avatar: avatarUrl,
+          }),
         }
-        return Promise.reject(`Error updating: ${res.status}`);
-      })
-      .catch((err) => console.error(err));
+      );
+
+      if (!res.ok) {
+        throw new Error(`Error updating: ${res.status}`);
+      }
+
+      return await res.json();
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
   }
 }

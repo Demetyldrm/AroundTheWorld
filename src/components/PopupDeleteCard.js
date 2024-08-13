@@ -6,17 +6,20 @@ export default class PopupDeleteCard extends Popup {
     this._popupForm = this._popupElement.querySelector(".modal__form");
     this._submitButton = this._popupElement.querySelector(".modal__button");
     this._submitButtonText = this._submitButton.textContent;
+    this._handleFormSubmit = null;
   }
 
-  handleDeleteConfirm(data) {
-    this._handleDeleteConfirm = data;
+  setFormSubmitHandler(handleFormSubmit) {
+    this._handleFormSubmit = handleFormSubmit;
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      this._handleDeleteConfirm();
+      if (this._handleFormSubmit) {
+        this._handleFormSubmit();
+      }
     });
   }
 }

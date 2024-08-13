@@ -21,14 +21,18 @@
 
       <main class="content">
         <section class="profile page__section">
-          <div class="profile__avatar-click">
-            <img
-              class="profile__image"
-              src="<%=require('./images/jacques-cousteau.jpg')%>"
-              alt="A picture of Jacques Cousteau"
-            />
-            <button class="profile__avatar-edit-button"></button>
-          </div>
+          <!-- <div class="profile__avatar-click"> -->
+          <img
+            class="profile__image"
+            src="<%=require('./images/jacques-cousteau.jpg')%>"
+            alt="Avatar"
+          />
+          <button
+            class="profile__avatar-edit-button"
+            type="button"
+            id="avatar-edit-button"
+          ></button>
+          <!-- </div> -->
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -43,7 +47,7 @@
 
         <!-- Modal for Changing Avatar -->
         <div class="modal" id="avatar-edit-modal">
-          <div class="modal__container">
+          <div class="modal__container" id="modal-avatar-edit-container">
             <button class="modal__close" type="button"></button>
             <p class="modal__heading">Change Profile Picture</p>
             <form class="modal__form" id="avatar-edit-form">
@@ -60,6 +64,7 @@
               </label>
               <button
                 class="modal__button modal__button_disabled"
+                id="avatar-save-button"
                 type="submit"
                 disabled
               >
@@ -116,7 +121,7 @@
           </label>
           <button
             class="modal__button modal__button_disabled"
-            id="edit-submit-button"
+            id="modal-edit-submit-button"
             disabled
           >
             Save
@@ -161,6 +166,7 @@
           </label>
           <button
             class="modal__button modal__button_disabled"
+            id="modal-add-card-button"
             type="submit"
             disabled
           >
@@ -185,18 +191,16 @@
 
     <!-- Delete Confirmation Modal -->
     <div class="modal" id="delete-card-modal">
-      <div class="modal__container">
+      <div class="modal__container" id="modal-delete-card-container">
         <button class="modal__close" type="button"></button>
-        <p class="modal__description">Are you sure?</p>
+        <h3 class="modal__description" id="card-delete-title">Are you sure?</h3>
         <form class="modal__form" id="delete-card-form">
-          <button type="button" class="modal__button modal__button_confirm">
-            Yes
-          </button>
           <button
-            type="button"
-            class="modal__button modal__button_cancel modal__cancel-button"
+            type="submit"
+            class="modal__button modal__button-confirm"
+            id="modal-yes-button"
           >
-            Cancel
+            Yes
           </button>
         </form>
       </div>
