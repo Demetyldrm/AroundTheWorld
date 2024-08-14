@@ -182,6 +182,7 @@ function handleAddCardFormSubmit(newCardData) {
         name: cardData.name,
         link: cardData.link,
         alt: cardData.name,
+        _id: cardData,
       });
 
       newCardPopup.close();
@@ -241,10 +242,12 @@ function handleLikeClick(cardId, isLiked, cardElement) {
   }
 }
 
-function handleAvatarEditSubmit(avatarUrl) {
+function handleAvatarEditSubmit(inputValues) {
+  const avatarUrl = inputValues.avatar;
+
   console.log("Changing the avatar with URL:", avatarUrl);
 
-  if (!avatarUrl || avatarUrl.trim() === "") {
+  if (!avatarUrl || typeof avatarUrl !== "string" || avatarUrl.trim() === "") {
     console.error("Invalid avatar URL:", avatarUrl);
     return;
   }
@@ -257,7 +260,7 @@ function handleAvatarEditSubmit(avatarUrl) {
       if (userData.avatar) {
         userInfo.changeAvatar(userData.avatar);
       } else {
-        console.error("Avatar URL not returned in API response.");
+        console.error("Error returning Avatar URL.");
       }
 
       avatarEditPopup.close();
@@ -284,12 +287,11 @@ profileEditButton.addEventListener("click", () => {
 
 // Add new card button
 addNewCardButton.addEventListener("click", () => {
-  addCardSubmitButton.textContent = "Saving";
   newCardPopup.open();
   addCardFormValidator.resetForm();
 });
 
-// Open the avatar edit modal when the edit button is clicked
+// Open the avatar edit modal
 profileAvatarEditButton.addEventListener("click", () => {
   avatarEditPopup.open();
   avatarFormValidator.resetForm();

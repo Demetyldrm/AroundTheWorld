@@ -53,14 +53,14 @@ export default class Api {
       .then((res) => {
         if (!res.ok) {
           return res.json().then((error) => {
-            console.error("Error details from server:", error);
+            console.error("Error from server:", error);
             return Promise.reject(`Error: ${res.status}`);
           });
         }
         return res.json();
       })
       .catch((err) => {
-        console.error("Error during profile update:", err);
+        console.error("Error updating profile:", err);
       });
   }
 
@@ -93,10 +93,9 @@ export default class Api {
     )
       .then((res) => {
         if (res.ok) {
-          console.log("This post has been deleted");
+          console.log("This card has been deleted");
           return res.json();
         }
-        console.log("Trouble deleting card");
         return Promise.reject(`Error deleting card: ${res.status}`);
       })
       .catch((err) => {
@@ -146,29 +145,29 @@ export default class Api {
   }
 
   async updateAvatar(avatarUrl) {
-    try {
-      const res = await fetch(
-        "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-        {
-          method: "PATCH",
-          headers: {
-            authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            avatar: avatarUrl,
-          }),
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error(`Error updating: ${res.status}`);
+    return fetch(
+      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
+      {
+        method: "PATCH",
+        headers: {
+          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          avatar: avatarUrl,
+        }),
       }
-
-      return await res.json();
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
+    )
+      .then((res) => {
+        if (res.ok) {
+          console.log(`Avatar Status: ${res.status}`);
+          return res.json();
+        }
+        console.log("Unable to change the Avatar");
+        return Promise.reject(`Error: ${res.status}`);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   }
 }
