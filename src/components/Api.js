@@ -5,11 +5,9 @@ export default class Api {
   }
 
   async getUserInfo() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
-      headers: {
-        authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-      },
+      headers: this._headers,
     })
       .then((res) => {
         if (res.ok) {
@@ -25,11 +23,8 @@ export default class Api {
       .catch((err) => console.error(err));
   }
   async getInitialCards() {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
-      method: "GET",
-      headers: {
-        authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-      },
+    return fetch(`${this._baseUrl}/cards`, {
+      headers: this._headers,
     })
       .then((res) => {
         if (res.ok) {
@@ -42,12 +37,9 @@ export default class Api {
   }
 
   async editProfile({ name, about }) {
-    return fetch("https://around-api.en.tripleten-services.com/v1/users/me", {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "PATCH",
-      headers: {
-        Authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({ name, about }),
     })
       .then((res) => {
@@ -65,12 +57,9 @@ export default class Api {
   }
 
   async addNewCard(title, link) {
-    return fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+    return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
-      headers: {
-        authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        "Content-Type": "application/json",
-      },
+      headers: this._headers,
       body: JSON.stringify({
         name: title,
         link: link,
@@ -81,16 +70,10 @@ export default class Api {
   }
 
   async deleteCard(cardId) {
-    return fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${cardId}`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-          "Content-type": "application/json",
-        },
-      }
-    )
+    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
       .then((res) => {
         if (res.ok) {
           console.log("This card has been deleted");
@@ -104,15 +87,10 @@ export default class Api {
   }
 
   async cardLike(cardId) {
-    return fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${cardId}/likes`,
-      {
-        method: "PUT",
-        headers: {
-          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        },
-      }
-    )
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    })
       .then((res) => {
         return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
       })
@@ -122,15 +100,10 @@ export default class Api {
   }
 
   async cardUnlike(cardId) {
-    return fetch(
-      `https://around-api.en.tripleten-services.com/v1/cards/${cardId}/likes`,
-      {
-        method: "DELETE",
-        headers: {
-          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-        },
-      }
-    )
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    })
       .then((res) => {
         if (res.ok) {
           console.log(`Unlike Status: ${res.status}`);
@@ -145,19 +118,13 @@ export default class Api {
   }
 
   async updateAvatar(avatarUrl) {
-    return fetch(
-      "https://around-api.en.tripleten-services.com/v1/users/me/avatar",
-      {
-        method: "PATCH",
-        headers: {
-          authorization: "7c3f5c74-509e-4796-a690-f2cafe6e2b28",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          avatar: avatarUrl,
-        }),
-      }
-    )
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: avatarUrl,
+      }),
+    })
       .then((res) => {
         if (res.ok) {
           console.log(`Avatar Status: ${res.status}`);

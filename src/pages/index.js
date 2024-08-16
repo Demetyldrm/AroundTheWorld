@@ -62,10 +62,10 @@ const createCard = (cardData) => {
   const card = new Card(
     cardData,
     "#card-template",
-    () => {
-      handleImageClick.open(cardData);
+    (cardData) => {
+      handleImageClick(cardData);
     },
-    () => {
+    (cardId, card) => {
       console.log("Card ID:", cardData._id || cardData.id);
       handleDeleteModal(cardData, card);
     },
@@ -172,7 +172,6 @@ function handleAddCardFormSubmit(newCardData) {
   const alt = newCardData.title;
   const link = newCardData.url;
 
-  console.log(name, alt, link, newCardData);
   addCardSubmitButton.textContent = "Saving...";
 
   api
@@ -184,6 +183,7 @@ function handleAddCardFormSubmit(newCardData) {
         alt: cardData.name,
         _id: cardData,
       });
+      addCardFormElement.reset();
 
       newCardPopup.close();
       addCardFormValidator.resetForm();
@@ -192,9 +192,10 @@ function handleAddCardFormSubmit(newCardData) {
       console.error("Error adding card:", err);
     })
     .finally(() => {
-      addCardSubmitButton.textContent = "Saved";
+      addCardSubmitButton.textContent = "Save";
     });
 }
+
 function handleImageClick(cardData) {
   newImagePopup.open(cardData);
 }
@@ -288,7 +289,7 @@ profileEditButton.addEventListener("click", () => {
 // Add new card button
 addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
-  addCardFormValidator.resetForm();
+  addCardFormValidator._toggleButtonState();
 });
 
 // Open the avatar edit modal
