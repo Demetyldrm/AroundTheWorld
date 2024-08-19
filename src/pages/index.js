@@ -249,7 +249,6 @@ function handleAvatarEditSubmit(inputValues) {
   console.log("Changing the avatar with URL:", avatarUrl);
 
   if (!avatarUrl || typeof avatarUrl !== "string" || avatarUrl.trim() === "") {
-    console.error("Invalid avatar URL:", avatarUrl);
     return;
   }
 
