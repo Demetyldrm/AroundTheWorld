@@ -23,20 +23,21 @@ export default class FormValidator {
     errorMessageEl.textContent = "";
   }
 
-  _toggleButtonState() {
-    if (this._hasInvalidInput()) {
-      this._disableButton();
-    } else {
-      this._enableButton();
-    }
-  }
   // _toggleButtonState() {
-  //   if (this._hasInvalidInput(this._inputEls)) {
-  //     this.disableButton();
-  //     return;
+  //   if (this._hasInvalidInput()) {
+  //     this._disableButton();
+  //   } else {
+  //     this._enableButton();
   //   }
-  //   this._enableButton();
   // }
+
+  _toggleButtonState() {
+    if (this._hasInvalidInput(this._inputEls)) {
+      this._disableButton();
+      return;
+    }
+    this._enableButton();
+  }
 
   _hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid);
