@@ -30,6 +30,13 @@ export default class FormValidator {
       this._enableButton();
     }
   }
+  // _toggleButtonState() {
+  //   if (this._hasInvalidInput(this._inputEls)) {
+  //     this.disableButton();
+  //     return;
+  //   }
+  //   this._enableButton();
+  // }
 
   _hasInvalidInput(inputList) {
     return !inputList.every((inputEl) => inputEl.validity.valid);
