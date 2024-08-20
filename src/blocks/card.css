@@ -72,6 +72,10 @@
 
 #card-delete-title {
   display: flex;
-  margin-left: 36px;
-  margin-bottom: 0px;
+  margin: 34px 36px 38px;
+}
+
+#card-delete-form {
+  margin: 0px;
+  padding: 0px;
 }

@@ -23,14 +23,6 @@ export default class FormValidator {
     errorMessageEl.textContent = "";
   }
 
-  // _toggleButtonState() {
-  //   if (this._hasInvalidInput()) {
-  //     this._disableButton();
-  //   } else {
-  //     this._enableButton();
-  //   }
-  // }
-
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
       this._disableButton();
@@ -80,15 +72,11 @@ export default class FormValidator {
     this._setEventListeners();
   }
 
-  resetForm(buttonText = "Save") {
+  resetForm() {
     this._formEl.reset();
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
     this._toggleButtonState();
-
-    if (this._submitButton) {
-      this._submitButton.textContent = buttonText;
-    }
   }
 }

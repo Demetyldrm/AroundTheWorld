@@ -55,7 +55,7 @@ export default class Card {
     this._cardElement = null;
   }
 
-  _handleLikeIcon() {
+  handleLikeIcon() {
     this._likeButton.classList.toggle("card__like-button_active");
   }
 
