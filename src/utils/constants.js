@@ -41,7 +41,7 @@ export const profileEditForm = profileEditModal.querySelector(".modal__form");
 export const addCardModal = document.querySelector("#add-card-modal");
 export const addCardFormElement = addCardModal.querySelector(".modal__form");
 export const cardListEl = document.querySelector(".cards__list");
-export const deleteCardElement = document.querySelector("#delete-card-form");
+export const deleteCardElement = document.querySelector("#card-delete-form");
 export const profileSubmitButton = document.querySelector(
   "#modal-edit-submit-button"
 );

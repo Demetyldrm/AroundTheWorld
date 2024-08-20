@@ -18,7 +18,10 @@ export default class PopupDeleteCard extends Popup {
     this._popupForm.addEventListener("submit", (e) => {
       e.preventDefault();
       if (this._handleFormSubmit) {
+        console.log("Submitting form, calling handler...");
         this._handleFormSubmit();
+      } else {
+        console.error("Form submit handler is not set.");
       }
     });
   }

@@ -70,7 +70,7 @@ const createCard = (cardData) => {
       handleDeleteModal(cardData, card);
     },
     (cardId, isLiked, cardElement) => {
-      handleLikeClick(cardId, isLiked, cardElement);
+      handleLikeClick(cardId, isLiked, cardElement, card);
     }
   );
 
@@ -181,7 +181,7 @@ function handleAddCardFormSubmit(newCardData) {
         name: cardData.name,
         link: cardData.link,
         alt: cardData.name,
-        _id: cardData,
+        _id: cardData._id,
       });
       addCardFormElement.reset();
 
@@ -221,23 +221,19 @@ function handleDeleteModal(cardData, card) {
   deleteCardPopup.open();
 }
 
-function handleLikeClick(cardId, isLiked, cardElement) {
+function handleLikeClick(cardId, isLiked, cardElement, card) {
   if (isLiked) {
     api
       .cardUnlike(cardId)
       .then(() => {
-        cardElement
-          .querySelector(".card__like-button")
-          .classList.remove("card__like-button_active");
+        card.updateLikes();
       })
       .catch((err) => console.log("Error unliking card:", err));
   } else {
     api
       .cardLike(cardId)
       .then(() => {
-        cardElement
-          .querySelector(".card__like-button")
-          .classList.add("card__like-button_active");
+        card.updateLikes();
       })
       .catch((err) => console.log("Error liking card:", err));
   }

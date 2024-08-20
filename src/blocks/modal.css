@@ -139,7 +139,7 @@
   height: 50px;
   width: 358px;
   cursor: pointer;
-  margin: 38px 36px 36px 36px;
+  margin: 38px 36px 0px 36px;
 }
 
 .modal__form {
@@ -209,10 +209,6 @@
   margin-bottom: 13px;
 }
 
-.modal__button-confirm {
-  margin: 38px 36px 36px 36px;
-}
-
 #modal-avatar-edit-container {
   width: 430px;
   height: 272px;
@@ -224,7 +220,7 @@
 
 #modal-delete-card-container {
   width: 430px;
-  height: 181px;
+  height: 140px;
 }
 
 @media screen and (max-width: 630px) {
