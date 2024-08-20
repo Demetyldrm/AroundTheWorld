@@ -228,7 +228,7 @@ function handleLikeClick(cardId, isLiked, cardElement) {
       .then(() => {
         cardElement
           .querySelector(".card__like-button")
-          .classList.remove("card__like-button");
+          .classList.remove("card__like-button_active");
       })
       .catch((err) => console.log("Error unliking card:", err));
   } else {
@@ -237,7 +237,7 @@ function handleLikeClick(cardId, isLiked, cardElement) {
       .then(() => {
         cardElement
           .querySelector(".card__like-button")
-          .classList.add("card__like-button");
+          .classList.add("card__like-button_active");
       })
       .catch((err) => console.log("Error liking card:", err));
   }
