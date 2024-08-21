@@ -275,10 +275,12 @@ function handleAvatarEditSubmit(inputValues) {
 // Edit Profile button
 profileEditButton.addEventListener("click", () => {
   const userInput = userInfo.getUserInfo();
-  profileTitleInput.value = userInput.name;
-  profileDescriptionInput.value = userInput.description;
-  editProfilePopup.open();
+
+  console.log(profileTitleInput);
   profileEditFormValidator.resetForm();
+  profileTitleInput.value = userInput.name;
+  profileDescriptionInput.value = userInput.about;
+  editProfilePopup.open();
 });
 
 // Add new card button
