@@ -23,6 +23,8 @@ export default class FormValidator {
     errorMessageEl.textContent = "";
   }
 
+  //for the reviewer: I made some methods private. But I get an error message when toggleButtonState method is public.
+
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
       this._disableButton();

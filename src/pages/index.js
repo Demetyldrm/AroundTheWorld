@@ -166,7 +166,7 @@ function handleProfileEditSubmit(profileData) {
       profileSubmitButton.textContent = "Saved";
     });
 }
-
+// for the reviewer: The reset form is placed inside the then block.
 function handleAddCardFormSubmit(newCardData) {
   const name = newCardData.title;
   const alt = newCardData.title;
@@ -212,7 +212,7 @@ function handleDeleteModal(cardData, card) {
     api
       .deleteCard(cardId)
       .then(() => {
-        card._deleteCard();
+        card.deleteCard();
         deleteCardPopup.close();
       })
       .catch(console.error);
@@ -238,7 +238,7 @@ function handleLikeClick(cardId, isLiked, cardElement, card) {
       .catch((err) => console.log("Error liking card:", err));
   }
 }
-
+// for the reviewer: The reset form is placed inside the then block.
 function handleAvatarEditSubmit(inputValues) {
   const avatarUrl = inputValues.avatar;
 
@@ -292,7 +292,7 @@ addNewCardButton.addEventListener("click", () => {
 // Open the avatar edit modal
 profileAvatarEditButton.addEventListener("click", () => {
   avatarEditPopup.open();
-  avatarFormValidator.resetForm();
+  // avatarFormValidator.resetForm();
 });
 
 // Handle the form submission for changing the avatar
