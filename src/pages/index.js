@@ -159,14 +159,12 @@ function handleProfileEditSubmit(profileData) {
       });
       editProfilePopup.close();
     })
-    .catch((err) => {
-      console.error("Error updating profile:", err);
-    })
+    .catch(console.error)
     .finally(() => {
       profileSubmitButton.textContent = "Saved";
     });
 }
-// for the reviewer: The reset form is placed inside the then block.
+
 function handleAddCardFormSubmit(newCardData) {
   const name = newCardData.title;
   const alt = newCardData.title;
@@ -188,9 +186,7 @@ function handleAddCardFormSubmit(newCardData) {
       newCardPopup.close();
       addCardFormValidator.resetForm();
     })
-    .catch((err) => {
-      console.error("Error adding card:", err);
-    })
+    .catch(console.error)
     .finally(() => {
       addCardSubmitButton.textContent = "Save";
     });
@@ -228,14 +224,14 @@ function handleLikeClick(cardId, isLiked, cardElement, card) {
       .then(() => {
         card.updateLikes();
       })
-      .catch((err) => console.log("Error unliking card:", err));
+      .catch(console.error);
   } else {
     api
       .cardLike(cardId)
       .then(() => {
         card.updateLikes();
       })
-      .catch((err) => console.log("Error liking card:", err));
+      .catch(console.error);
   }
 }
 // for the reviewer: The reset form is placed inside the then block.
@@ -262,11 +258,9 @@ function handleAvatarEditSubmit(inputValues) {
       avatarEditPopup.close();
       avatarFormValidator.resetForm();
     })
-    .catch((err) => {
-      console.error(`Error updating avatar: ${err}`);
-    })
+    .catch(console.error)
     .finally(() => {
-      avatarSaveButton.textContent = "Saved";
+      avatarSaveButton.textContent = "Save";
     });
 }
 
@@ -286,13 +280,12 @@ profileEditButton.addEventListener("click", () => {
 // Add new card button
 addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
-  addCardFormValidator._toggleButtonState();
+  addCardFormValidator.toggleButtonState();
 });
 
 // Open the avatar edit modal
 profileAvatarEditButton.addEventListener("click", () => {
   avatarEditPopup.open();
-  // avatarFormValidator.resetForm();
 });
 
 // Handle the form submission for changing the avatar
@@ -314,6 +307,3 @@ addCardFormValidator.enableValidation();
 
 const avatarFormValidator = new FormValidator(settings, avatarEditFormElement);
 avatarFormValidator.enableValidation();
-
-const deleteFormValidator = new FormValidator(settings, deleteCardElement);
-deleteFormValidator.enableValidation();

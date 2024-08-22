@@ -25,7 +25,7 @@ export default class FormValidator {
 
   //for the reviewer: I made some methods private. But I get an error message when toggleButtonState method is public.
 
-  _toggleButtonState() {
+  toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
       this._disableButton();
       return;
@@ -61,7 +61,7 @@ export default class FormValidator {
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
@@ -79,6 +79,6 @@ export default class FormValidator {
     this._inputEls.forEach((inputEl) => {
       this._hideInputError(inputEl);
     });
-    this._toggleButtonState();
+    this.toggleButtonState();
   }
 }
