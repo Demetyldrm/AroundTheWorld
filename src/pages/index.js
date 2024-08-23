@@ -161,7 +161,7 @@ function handleProfileEditSubmit(profileData) {
     })
     .catch(console.error)
     .finally(() => {
-      profileSubmitButton.textContent = "Saved";
+      profileSubmitButton.textContent = "Save";
     });
 }
 
@@ -286,14 +286,6 @@ addNewCardButton.addEventListener("click", () => {
 // Open the avatar edit modal
 profileAvatarEditButton.addEventListener("click", () => {
   avatarEditPopup.open();
-});
-
-// Handle the form submission for changing the avatar
-avatarEditFormElement.addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const avatarUrl = document.querySelector("#avatar-url-input").value;
-  handleAvatarEditSubmit(avatarUrl);
 });
 
 /* -------------------------------------------------- Form Validators ---------------------------------------- */

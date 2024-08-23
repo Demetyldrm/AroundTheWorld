@@ -75,7 +75,10 @@
   margin: 34px 36px 38px;
 }
 
-#card-delete-form {
-  margin: 0px;
-  padding: 0px;
+@media screen and (max-width: 630px) {
+  #card-delete-form {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+  }
 }

@@ -215,9 +215,24 @@
 }
 
 #modal-yes-button {
-  width: 358px;
+  /* width: 358px;
   height: 50px;
-  margin: 0px 36px 36px;
+  margin: 0px 36px 36px; */
+  height: 50px;
+  width: 100%;
+  max-width: 358px; /* Ensures the button doesn't exceed this width */
+  margin-top: auto; /* Push the button to the bottom if needed */
+  text-align: center;
+  border: 2px solid black;
+  background-color: black;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 18px;
+  border-radius: 5px;
+  box-sizing: border-box;
 }
 
 #modal-delete-card-container {
@@ -259,5 +274,11 @@
     bottom: calc(100% + 15px);
     left: calc(100% - 30px);
     transform: rotate(90deg);
+  }
+
+  #modal-yes-button {
+    width: 100%; /* Make the form and button full-width */
+    max-width: 238px; /* But not exceeding 238px */
+    margin: auto; /* Center them horizontally */
   }
 }
