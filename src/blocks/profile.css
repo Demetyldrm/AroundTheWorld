@@ -24,9 +24,24 @@
   margin-right: 20px;
 }
 
-.profile__edit-button:hover {
-  opacity: 0.6;
+.profile__avatar-edit-button {
+  background: transparent url("../images/vector.svg") center no-repeat;
+  position: absolute;
+  left: 0;
+  height: 120px;
+  width: 120px;
+  border: none;
+  object-position: center;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.5s linear, background-color 0.5s linear;
+}
+
+.profile__avatar-edit-button:hover {
+  opacity: 1;
   cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .profile__add-button {
@@ -80,9 +95,32 @@
   background-position: center;
 }
 
-#profile-description-input {
-  margin: 0;
+/* CSS for Profile Picture Hover Effect
+.profile__avatar-container {
+  position: relative;
+  width: fit-content;
 }
+
+.profile__avatar-edit-button {
+  display: none;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 40px;
+  height: 40px;
+  background-image: url('<%=require("./images/Vector.svg)%>');
+  background-size: cover;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+
+.profile__avatar-container:hover .profile__avatar-edit-button {
+  display: block;
+  opacity: 0.9;
+} */
 
 @media screen and (max-width: 680px) {
   .profile {

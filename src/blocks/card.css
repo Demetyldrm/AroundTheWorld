@@ -69,3 +69,16 @@
   text-overflow: ellipsis;
   max-width: 220px;
 }
+
+#card-delete-title {
+  display: flex;
+  margin: 34px 36px 38px;
+}
+
+@media screen and (max-width: 630px) {
+  #card-delete-form {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+  }
+}

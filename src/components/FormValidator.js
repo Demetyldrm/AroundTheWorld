@@ -23,9 +23,11 @@ export default class FormValidator {
     errorMessageEl.textContent = "";
   }
 
-  _toggleButtonState() {
+  //for the reviewer: I made some methods private. But I get an error message when toggleButtonState method is public.
+
+  toggleButtonState() {
     if (this._hasInvalidInput(this._inputEls)) {
-      this.disableButton();
+      this._disableButton();
       return;
     }
     this._enableButton();
@@ -43,7 +45,7 @@ export default class FormValidator {
     }
   }
 
-  disableButton() {
+  _disableButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }
@@ -59,7 +61,7 @@ export default class FormValidator {
     this._inputEls.forEach((inputEl) => {
       inputEl.addEventListener("input", () => {
         this._checkInputValidity(inputEl);
-        this._toggleButtonState();
+        this.toggleButtonState();
       });
     });
   }
@@ -70,5 +72,13 @@ export default class FormValidator {
     });
 
     this._setEventListeners();
+  }
+
+  resetForm() {
+    this._formEl.reset();
+    this._inputEls.forEach((inputEl) => {
+      this._hideInputError(inputEl);
+    });
+    this.toggleButtonState();
   }
 }
