@@ -1,7 +1,7 @@
 ## 🚀 Live Demo
 https://demetyldrm.github.io/se_project_aroundtheus/
 
-## 📖 About This Project:  Around The World
+## 📖 About This Project:  Around The US
 
 I used responsive design patterns to adjust the elements for desktop and tablet sizes. Flexbox, Grid ,Media Queries and BEM principals were used to create this website. I'm planning to improve the site by making it more responsive and mobile friendly. 
 
